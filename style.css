@@ -1,11 +1,11 @@
 body { margin: 0; background: #eee; font-family: sans-serif; }
 #toolbar {
-    text-align: center;
+    text-align: center; 
     padding: 10px;
     background: #333;
     color: #fff;
     display: flex;
-    gap: 10px;
+    gap: 13px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -15,4 +15,14 @@ body { margin: 0; background: #eee; font-family: sans-serif; }
     margin: auto;
     border: 1px solid #ccc;
     background: white;
+}
+#toolbar button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#toolbar button:hover {
+    background: #555;
 }

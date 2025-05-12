@@ -8,13 +8,59 @@
     <div id="toolbar">
         <button onclick="prevPage()">Anterior</button>
         <button onclick="zoomOut()">-</button>
-        <span id="zoom-info">Zoom: <span id="zoom-level">100%</span></span>
         <button onclick="zoomIn()">+</button>
+        <button oneclick="Reestablecer"
+        <button onclick="Reestablecer()">=</button>
         <button onclick="nextPage()">Siguiente</button>
         <span id="page-info">Página <span id="page-num"></span> de <span id="page-count"></span></span>
     </div>
     <canvas id="pdf-canvas"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script src="viewer.js"></script>
+    <script>
+        const url = 'path/to/your/pdf/file.pdf'; // Cambia esto a la ruta de tu archivo PDF
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+        let pdfDoc = null,
+            pageNum = 1,
+            scale = 1.0,
+            canvas = document.getElementById('pdf-canvas');
+            canvasContext = canvas.getContext('2d');
+        pdfjsLib.getDocument(url).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            document.getElementById('page-count').textContent = pdf.numPages;
+            renderPage(pageNum);
+        });
+        function renderPage(num) {
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                const renderContext = {
+                    canvasContext: canvasContext,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+                document.getElementById('page-num').textContent = num;
+            });
+        }
+        function nextPage() {
+            if (pdfDoc && pageNum < pdfDoc.numPages) {
+                pageNum++;
+                renderPage(pageNum);
+            }
+        }
+        function prevPage() {
+            if (pdfDoc && pageNum > 1) {
+                pageNum--;
+                renderPage(pageNum);
+            }
+        }
+        <!-- Para la idea de pdf -->
+        <object data="mypdf.pdf" type="application/pdf" width="800" height="1200">
+            You don't have a PDF plugin, but you can download the PDF file.
+        </object>
+    </script>
 </body>
 </html>
