@@ -7,19 +7,20 @@
   <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-  <header role="banner">
-    <h1>Visor de Documentos PDF</h1>
-    <p>Visualiza, navega y analiza archivos PDF directamente desde tu navegador con un visor accesible y adaptado a todos los dispositivos.</p>
-    <article id="visor">
-    <nav>
-      <ul>
-        <li><a href="#visor">Ir al visor</a></li>
-        <li><a href="#historial">Historial</a></li>
-        <li><a href="#ayuda">Ayuda</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
+    <header role="banner">
+        <h1>Visor de Documentos PDF</h1>
+        <p>Visualiza, navega y analiza archivos PDF directamente desde tu navegador con un visor accesible y adaptado a todos los dispositivos.</p>
+        <nav>
+          <ul>
+            <li><a href="#visor">Ir al visor</a></li>
+            <li><a href="#historial">Historial</a></li>
+            <li><a href="#ayuda">Ayuda</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <article id="visor">
     <h2>Controles de navegación</h2>
     <p><strong>PDF.js</strong> es una librería de código abierto que permite visualizar archivos PDF directamente en el navegador. Más información en <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">su sitio oficial</a>.</p>
 <div style="text-align: center;">
@@ -60,34 +61,73 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   <script>
-    const url = 'path/to/your/pdf/file.pdf';
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+   const url = 'path/to/your/pdf/file.pdf'; // Ruta al archivo PDF
 
-    let pdfDoc = null, pageNum = 1, scale = 1.0;
-    const canvas = document.getElementById('pdf-canvas');
-    const canvasContext = canvas.getContext('2d');
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
-    pdfjsLib.getDocument(url).promise.then(pdf => {
-      pdfDoc = pdf;
-      document.getElementById('page-count').textContent = pdf.numPages;
-      renderPage(pageNum);
-    });
+let pdfDoc = null;
+let pageNum = 1;
+let scale = 1.0;
 
-    function renderPage(num) {
-      pdfDoc.getPage(num).then(page => {
-        const viewport = page.getViewport({ scale });
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        page.render({ canvasContext, viewport });
-        document.getElementById('page-num').textContent = num;
-      });
-    }
+const canvas = document.getElementById('pdf-canvas');
+const canvasContext = canvas.getContext('2d');
 
-    function nextPage() { if (pdfDoc && pageNum < pdfDoc.numPages) renderPage(++pageNum); }
-    function prevPage() { if (pdfDoc && pageNum > 1) renderPage(--pageNum); }
-    function zoomIn() { scale += 0.1; renderPage(pageNum); }
-    function zoomOut() { if (scale > 0.1) { scale -= 0.1; renderPage(pageNum); } }
-    function resetZoom() { scale = 1.0; renderPage(pageNum); }
+
+pdfjsLib.getDocument(url).promise.then((pdf) => {
+  pdfDoc = pdf;
+  document.getElementById('page-count').textContent = pdf.numPages;
+  renderPage(pageNum);
+});
+
+
+const renderPage = (num) => {
+  pdfDoc.getPage(num).then((page) => {
+    const viewport = page.getViewport({ scale });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    const renderContext = {
+      canvasContext,
+      viewport,
+    };
+
+    page.render(renderContext);
+    document.getElementById('page-num').textContent = num;
+  });
+};
+
+
+const nextPage = () => {
+  if (pdfDoc && pageNum < pdfDoc.numPages) {
+    pageNum++;
+    renderPage(pageNum);
+  }
+};
+
+const prevPage = () => {
+  if (pdfDoc && pageNum > 1) {
+    pageNum--;
+    renderPage(pageNum);
+  }
+};
+
+const zoomIn = () => {
+  scale += 0.1;
+  renderPage(pageNum);
+};
+
+const zoomOut = () => {
+  if (scale > 0.1) {
+    scale -= 0.1;
+    renderPage(pageNum);
+  }
+};
+
+const resetZoom = () => {
+  scale = 1.0;
+  renderPage(pageNum);
+};
   </script>
 </html>
