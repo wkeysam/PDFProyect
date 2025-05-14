@@ -1,0 +1,183 @@
+ /* --------- ESTILOS BASE --------- */
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* --------- HEADER Y NAVEGACIÓN --------- */
+  header {
+    background-color: #0d2633;
+    color: rgb(231, 200, 200);
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-style: italic;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #eb9090;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* --------- MAIN --------- */
+  main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* --------- TITULOS Y JERARQUÍA --------- */
+  h2 {
+    font-size: 1.6rem;
+    color: #004466;
+    margin-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+    color: #004466;
+    margin-top: 2rem;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  strong {
+    font-weight: bold;
+  }
+  em {
+    font-style: italic;
+  }
+  
+  /* --------- FORMULARIO Y BOTONES --------- */
+  form fieldset {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  form legend {
+    font-weight: bold;
+    color: #004466;
+  }
+  form button {
+    background: #004466;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 3px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  form button:hover {
+    background: #006699;
+  }
+  
+  /* --------- INFORMACIÓN DE PÁGINA --------- */
+  #page-info {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* --------- CANVAS / FIGURE --------- */
+  canvas#pdf-canvas {
+    display: block;
+    margin: 1rem auto;
+    border: 1px solid #ccc;
+    background: white;
+    max-width: 100%;
+  }
+  figure {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  figcaption {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* --------- CITA / BLOCKQUOTE --------- */
+  blockquote {
+    border-left: 4px solid #004466;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #555;
+  }
+  
+  /* --------- TABLA DE HISTORIAL --------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  th, td {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  thead {
+    background-color: #eeeeee;
+  }
+  tfoot {
+    background-color: #f9f9f9;
+    font-style: italic;
+    text-align: center;
+  }
+  
+  /* --------- ASIDE --------- */
+  aside {
+    margin-top: 2rem;
+    background: #f0f0f0;
+    padding: 1rem;
+    border-left: 4px solid #02162009;
+    border-radius: 4px;
+  }
+  aside details summary {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* --------- FOOTER --------- */
+  footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  footer a {
+    color: #7dd;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
