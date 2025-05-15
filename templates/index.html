@@ -1,133 +1,29 @@
+<!-- DOCUMENTO 1: index.html (Principal / Home) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Visor de PDF</title>
-  <link rel="stylesheet" href="styles/style.css" />
+  <title>Inicio - Visor PDF</title>
+  <link rel="stylesheet" href="../styles/style.css" />
 </head>
 <body>
-    <header role="banner">
-        <h1>Visor de Documentos PDF</h1>
-        <p>Visualiza, navega y analiza archivos PDF directamente desde tu navegador con un visor accesible y adaptado a todos los dispositivos.</p>
-        <nav>
-          <ul>
-            <li><a href="#visor">Ir al visor</a></li>
-            <li><a href="#historial">Historial</a></li>
-            <li><a href="#ayuda">Ayuda</a></li>
-          </ul>
-        </nav>
-      </header>
-      
-      <main>
-        <article id="visor">
-    <h2>Controles de navegación</h2>
-    <p><strong>PDF.js</strong> es una librería de código abierto que permite visualizar archivos PDF directamente en el navegador. Más información en <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">su sitio oficial</a>.</p>
-<div style="text-align: center;">
-    <form>
-        <fieldset>
-          <legend>Opciones</legend>
-              <button type="button" onclick="prevPage()">Anterior</button>
-          <button type="button" onclick="zoomOut()">-</button>
-          <button type="button" onclick="zoomIn()">+</button>
-          <button type="button" onclick="resetZoom()">=</button>
-          <button type="button" onclick="nextPage()">Siguiente</button>
-        </fieldset>
-      </form>
-</div>   
-      <p id="page-info">Página <span id="page-num"></span> de <span id="page-count"></span></p>
-
-      <figure>
-        <figcaption><em>Vista previa del documento:</em></figcaption>
-        <canvas id="pdf-canvas" role="img" aria-label="Vista del PDF"></canvas>
-      </figure>
-
-      <blockquote cite="https://mozilla.github.io/pdf.js/">
-        “PDF.js permite una experiencia de lectura de documentos PDF sin plugins, mejorando la compatibilidad y la seguridad.”
-      </blockquote>
-    </article>
-    <aside id="ayuda">
-      <details>
-        <summary>¿Cómo usar el visor?</summary>
-        <p>Usa los botones para moverte entre páginas, hacer zoom y restablecer la vista. Puedes descargar el PDF si el visor no funciona correctamente.</p>
-      </details>
-    </aside>
-  </main>
-
+  <header role="banner">
+    <h1>Visor documentos PDF</h1>
+    <p>Visualiza y analiza tus documentos PDF de forma accesible.</p>
+    <nav>
+      <ul>
+        <li><a href="visor.html">Ir al visor</a></li>
+        <li><a href="historial.html">Historial</a></li>
+        <li><a href="ayuda.html">Ayuda</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h2>Bienvenido</h2>
+    <p>Este visor web te permite explorar archivos PDF con controles interactivos. Usa el menú de navegación para acceder a las funciones.</p>
   <footer role="contentinfo">
     <p>Contacto: <a href="mailto:ejemplosoporte@email.com">ejemplosoporte@email.com</a></p>
     <small>&copy; 2025 VisorPDF. Todos los derechos reservados.</small>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-  <script>
-   const url = 'path/to/your/pdf/file.pdf'; // Ruta al archivo PDF
-
-const pdfjsLib = window['pdfjs-dist/build/pdf'];
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-
-let pdfDoc = null;
-let pageNum = 1;
-let scale = 1.0;
-
-const canvas = document.getElementById('pdf-canvas');
-const canvasContext = canvas.getContext('2d');
-
-
-pdfjsLib.getDocument(url).promise.then((pdf) => {
-  pdfDoc = pdf;
-  document.getElementById('page-count').textContent = pdf.numPages;
-  renderPage(pageNum);
-});
-
-
-const renderPage = (num) => {
-  pdfDoc.getPage(num).then((page) => {
-    const viewport = page.getViewport({ scale });
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-
-    const renderContext = {
-      canvasContext,
-      viewport,
-    };
-
-    page.render(renderContext);
-    document.getElementById('page-num').textContent = num;
-  });
-};
-
-
-const nextPage = () => {
-  if (pdfDoc && pageNum < pdfDoc.numPages) {
-    pageNum++;
-    renderPage(pageNum);
-  }
-};
-
-const prevPage = () => {
-  if (pdfDoc && pageNum > 1) {
-    pageNum--;
-    renderPage(pageNum);
-  }
-};
-
-const zoomIn = () => {
-  scale += 0.1;
-  renderPage(pageNum);
-};
-
-const zoomOut = () => {
-  if (scale > 0.1) {
-    scale -= 0.1;
-    renderPage(pageNum);
-  }
-};
-
-const resetZoom = () => {
-  scale = 1.0;
-  renderPage(pageNum);
-};
-  </script>
+</body>
 </html>
