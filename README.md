@@ -1,3 +1,4 @@
 # PDF.js Viewer Project
 
-Estructura base 
+PDF viewer. 
+Proyecto y README.md aún en desarrollo.
