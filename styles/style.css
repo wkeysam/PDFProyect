@@ -157,27 +157,6 @@ body {
     font-style: italic;
     color: #555;
   }
-
-  /* --------- TABLA DE HISTORIAL --------- */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-  }
-  th, td {
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    text-align: left;
-  }
-  thead {
-    background-color: #eeeeee;
-  }
-  tfoot {
-    background-color: #f9f9f9;
-    font-style: italic;
-    text-align: center;
-  }
-
   /* --------- ASIDE --------- */
   aside {
     margin-top: 2rem;
