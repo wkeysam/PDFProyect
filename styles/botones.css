@@ -1,0 +1,134 @@
+/* --------- FORMULARIO Y BOTONES --------- */
+  
+  .formulario-controles {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  form fieldset {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  form legend {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 0 0.5rem;
+  }
+  .botones {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .botones button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .botones button:hover {
+    background-color: #222;
+  }
+  .botones button:focus {
+    outline: 2px solid #00aaff;
+    outline-offset: 2px;
+  }
+  
+  /* --------- INFORMACIÓN DE PÁGINA --------- */
+  #page-info {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* --------- CANVAS / FIGURE --------- */
+  canvas#pdf-canvas {
+    display: block;
+    margin: 1rem auto;
+    border: 1px solid #ccc;
+    background: white;
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  figure {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  figcaption {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* --------- CITA / BLOCKQUOTE --------- */
+  blockquote {
+    border-left: 4px solid #004466;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #555;
+  }
+  
+  /* --------- TABLA DE HISTORIAL --------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  th, td {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  thead {
+    background-color: #eeeeee;
+  }
+  tfoot {
+    background-color: #f9f9f9;
+    font-style: italic;
+    text-align: center;
+  }
+  
+  /* --------- ASIDE --------- */
+  aside {
+    margin-top: 2rem;
+    background: #f0f0f0;
+    padding: 1rem;
+    border-left: 4px solid #02162009;
+    border-radius: 4px;
+  }
+  aside details summary {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* --------- FOOTER --------- */
+  footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    font-size: 0.9rem;
+    
+  }
+  footer a {
+    color: #800080;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
