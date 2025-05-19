@@ -73,58 +73,6 @@ body {
     justify-content: flex-end; 
     min-height: 66vh;
   }
-  
-  /* --------- FORMULARIO Y BOTONES --------- */
-  
-  .formulario-controles {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  form fieldset {
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  form legend {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
-    padding: 0 0.5rem;
-  }
-  .botones {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
-  
-  .botones button {
-    background-color: #000;
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .botones button:hover {
-    background-color: #222;
-  }
-  .botones button:focus {
-    outline: 2px solid #00aaff;
-    outline-offset: 2px;
-  }
-  
   /* --------- INFORMACIÓN DE PÁGINA --------- */
   #page-info {
     font-weight: bold;
