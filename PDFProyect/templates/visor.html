@@ -1,0 +1,135 @@
+<!-- DOCUMENTO 2: visor.html (Visor funcional) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visor PDF</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/visor.css" />
+</head>
+<body>
+  <header role="banner">
+    <h1>Visor documentos PDF</h1>
+    <p>Visualiza y analiza tus documentos PDF de forma accesible.</p>
+    <nav>
+      <ul>
+        <li><a href="visor.html">Ir al visor</a></li>
+        <li><a href="historial.html">Historial</a></li>
+        <li><a href="ayuda.html">Ayuda</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article id="visor">
+      <h2>Controles de navegación</h2>
+      <p><strong>PDF.js</strong> es una librería de código abierto que permite visualizar archivos PDF directamente en el navegador. Más información en <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">su sitio oficial</a>.</p>
+      <div class="formulario-controles">
+        <form>
+          <fieldset>
+            <legend>Opciones</legend>
+            <div class="botones">
+              <button type="button" onclick="prevPage()">Anterior</button>
+              <button type="button" onclick="zoomOut()">-</button>
+              <button type="button" onclick="zoomIn()">+</button>
+              <button type="button" onclick="resetZoom()">=</button>
+              <button type="button" onclick="nextPage()">Siguiente</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>    
+      <p id="page-info">Página <span id="page-num"></span> de <span id="page-count"></span></p>
+      <figure>
+        <figcaption><em>Vista previa del documento:</em></figcaption>
+        <canvas id="pdf-canvas" role="img" aria-label="Vista del PDF"></canvas>
+      </figure>
+      <blockquote cite="https://mozilla.github.io/pdf.js/">
+        “PDF.js permite una experiencia de lectura de documentos PDF sin plugins, mejorando la compatibilidad y la seguridad.”
+      </blockquote>
+    </article>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script>
+  class PDFViewer {
+    constructor(url, canvasId, pageNumId, pageCountId) {
+      this.url = url;
+      this.canvas = document.getElementById(canvasId);
+      this.canvasContext = this.canvas.getContext('2d');
+      this.pageNumElem = document.getElementById(pageNumId);
+      this.pageCountElem = document.getElementById(pageCountId);
+      this.pdfDoc = null;
+      this.pageNum = 1;
+      this.scale = 1.0;
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+      this.loadDocument();
+    }
+
+    async loadDocument() {
+      this.pdfDoc = await pdfjsLib.getDocument(this.url).promise;
+      this.pageCountElem.textContent = this.pdfDoc.numPages;
+      this.renderPage(this.pageNum);
+    }
+
+    async renderPage(num) {
+      const page = await this.pdfDoc.getPage(num);
+      const viewport = page.getViewport({ scale: this.scale });
+      this.canvas.width = viewport.width;
+      this.canvas.height = viewport.height;
+      await page.render({ canvasContext: this.canvasContext, viewport }).promise;
+      this.pageNumElem.textContent = num;
+    }
+
+    nextPage() {
+      if (this.pageNum < this.pdfDoc.numPages) {
+        this.pageNum++;
+        this.renderPage(this.pageNum);
+      }
+    }
+
+    prevPage() {
+      if (this.pageNum > 1) {
+        this.pageNum--;
+        this.renderPage(this.pageNum);
+      }
+    }
+
+    zoomIn() {
+      this.scale += 0.1;
+      this.renderPage(this.pageNum);
+    }
+
+    zoomOut() {
+      if (this.scale > 0.1) {
+        this.scale -= 0.1;
+        this.renderPage(this.pageNum);
+      }
+    }
+
+    resetZoom() {
+      this.scale = 1.0;
+      this.renderPage(this.pageNum);
+    }
+  }
+
+  // Inicializar el visor
+  const viewer = new PDFViewer(
+    '../assets/pdfs/Estructura-Entre-Comillasxd.pdf',
+    'pdf-canvas',
+    'page-num',
+    'page-count'
+  );
+
+  // Conectar botones
+  window.prevPage = () => viewer.prevPage();
+  window.nextPage = () => viewer.nextPage();
+  window.zoomIn = () => viewer.zoomIn();
+  window.zoomOut = () => viewer.zoomOut();
+  window.resetZoom = () => viewer.resetZoom();
+</script>
+   <footer role="contentinfo">
+    <p>Contacto: <a href="mailto:ejemplosoporte@email.com">ejemplosoporte@email.com</a></p>
+    <small>&copy; 2025 VisorPDF. Todos los derechos reservados.</small>
+  </footer>
+</body>
+</html>
